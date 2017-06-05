@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="http://scott1028.github.io/sct-plugin/src/hacks/others.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.2/socket.io.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript" charset="utf-8">
+            var socket = io('http://localhost:8080');
+            socket.connect();
+            socket.on('message', function(data) {
+                var str = arrayBufferToString(data);
+                console.log(str);
+                $('div').append('<p>' + $('<div/>').text(str).html() + '</p>');
+                $(window).scrollTop($('body').height() - $(window).height() + 80);
+            });
+            $(function(){
+                $('form').submit(function(e){
+                    var input = $('input');
+                    socket.send(input.val());
+                    input.val('');
+                    return false;
+                });
+                $('input').focus();
+            });
+        </script> 
+        <style type="text/css">
+            body, p, input {
+                font-family: fixed;
+                font-size: 13px;
+                border: none;
+            }
+            p { white-space: pre; }
+            p, form, input { margin:0; padding:0; }
+            input:focus { outline: none; border: none; }
+        </style>
+    </head>
+    <body>
+        <div></div>
+        <form>
+            &gt; <input>
+        </form>
+    </body>
+</html>

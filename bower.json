@@ -1,0 +1,17 @@
+{
+  "name": "interactive-shell-with-web",
+  "description": "",
+  "main": "",
+  "authors": [
+    "scott.lan <scott.lan@taisys.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
